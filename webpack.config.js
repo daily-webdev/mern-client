@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = ({ mode }) => ({
@@ -12,6 +12,14 @@ module.exports = ({ mode }) => ({
     filename: "bundle.js",
     // publicPath: '/assets'
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+  ],
 
   module: {
     rules: [
@@ -35,16 +43,9 @@ module.exports = ({ mode }) => ({
         test: /\.(jpe?g|png|gif|svg)$/,
         loader: "url-loader",
         options: {
-        name: "/public/img/[name].[ext]",
+          name: "/public/img/[name].[ext]",
         },
       },
     ],
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new CleanWebpackPlugin()
-  ]
 });
