@@ -2,8 +2,8 @@ import React, { PureComponent, useState } from "react";
 
 const TestComp = () => {
   const [state, handleState] = useState("nothing");
-  const handleClick = () => {
-    fetch("http://localhost:9000/api")
+  const handleClickA = () => {
+    fetch("http://localhost:9000/text-api")
       .then((res) => {
         return res.text();
       })
@@ -13,10 +13,34 @@ const TestComp = () => {
       });
   };
 
+  const handleClickB = () => {
+    fetch("http://localhost:9000/json-api")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const data = res.name;
+        handleState(data);
+      });
+  };
+
+  const handleClickC = () => {
+    fetch("http://localhost:9000/mongo")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const data = res[0].name;
+        handleState(data);
+      });
+  };
+
   return (
     <>
       <h1>TEST</h1>
-      <button onClick={handleClick}>get data</button>
+      <button onClick={handleClickA}>get text data</button>
+      <button onClick={handleClickB}>get json data</button>
+      <button onClick={handleClickC}>get mongo data</button>
       <div>{state}</div>
     </>
   );
