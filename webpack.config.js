@@ -31,7 +31,15 @@ module.exports = ({ mode }) => ({
       },
 
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
+        use: [
+          mode === "production" ? MiniCssExtractPlugin.loader : "style-loader",
+          "css-loader",
+        ],
+      },
+
+      {
+        test: /\.scss$/,
         use: [
           mode === "production" ? MiniCssExtractPlugin.loader : "style-loader",
           "css-loader",

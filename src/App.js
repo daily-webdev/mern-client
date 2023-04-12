@@ -1,4 +1,6 @@
 import React, { PureComponent, useState } from "react";
+import "./app.css";
+import "./app.scss";
 
 const TestComp = () => {
   const [state, handleState] = useState("nothing");
@@ -21,6 +23,7 @@ const TestComp = () => {
       .then((res) => {
         const data = res.name;
         handleState(data);
+        console.log(res);
       });
   };
 
