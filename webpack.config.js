@@ -9,8 +9,8 @@ module.exports = ({ mode }) => ({
   entry: path.resolve(__dirname, "src/index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
-    // publicPath: '/assets'
+    filename: "[name].bundle.js",
+    // publicPath: "/public",
   },
 
   plugins: [
@@ -19,6 +19,9 @@ module.exports = ({ mode }) => ({
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "./public", to: "./public" }],
+    }),
   ],
 
   module: {
@@ -49,10 +52,14 @@ module.exports = ({ mode }) => ({
 
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        loader: "url-loader",
-        options: {
-          name: "/public/img/[name].[ext]",
-        },
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "/public/img/[name].[ext]",
+            },
+          },
+        ],
       },
     ],
   },

@@ -1,6 +1,8 @@
-import React, { PureComponent, useState } from "react";
+import React, { PureComponent, useState, Suspense, lazy } from "react";
 import "./app.css";
 import "./app.scss";
+// const Lazy = lazy(() => import("./Lazy"));
+import Lazy from "./Lazy.js";
 
 const TestComp = () => {
   const [state, handleState] = useState("nothing");
@@ -45,6 +47,10 @@ const TestComp = () => {
       <button onClick={handleClickB}>get json data</button>
       <button onClick={handleClickC}>get mongo data</button>
       <div>{state}</div>
+      {/* <Suspense fallback={<div>loading...</div>}>
+        <Lazy />
+      </Suspense> */}
+      <Lazy />
     </>
   );
 };
