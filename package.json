@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://daily-webdev.github.io/mern-client",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "webpack-dev-server --mode=development --open --hot",
     "build": "webpack --mode=production"
   },
@@ -37,6 +39,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.61.0",
@@ -47,5 +50,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "https://daily-webdev-api.herokuapp.com/"
 }
