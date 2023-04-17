@@ -63,4 +63,14 @@ module.exports = ({ mode }) => ({
       },
     ],
   },
+
+  devServer: {
+    proxy: {
+      "/": {
+        target: "https://daily-webdev-api.herokuapp.com",
+        secure: false,
+        changeOrigin: true,
+      },
+    },
+  },
 });

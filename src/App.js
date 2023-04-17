@@ -7,7 +7,7 @@ import Lazy from "./Lazy.js";
 const TestComp = () => {
   const [state, handleState] = useState("nothing");
   const handleClickA = () => {
-    fetch("https://daily-webdev-api.herokuapp.com/text-api")
+    fetch("/text-api")
       .then((res) => {
         return res.text();
       })
@@ -18,7 +18,7 @@ const TestComp = () => {
   };
 
   const handleClickB = () => {
-    fetch("/json-api")
+    fetch("https://daily-webdev-api.herokuapp.com/json-api")
       .then((res) => {
         return res.json();
       })
